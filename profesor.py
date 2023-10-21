@@ -10,7 +10,23 @@ class Profesor(Usuario):
     def __str__(self):
         return super().__str__() + " Titulo: ", self.__titulo, " Año de egreso: ",self.__anio_egreso
 
-    def dictar_curso():
-        
-        return 
+    @property
+    def titulo(self):
+        return self.__titulo
+
+    @titulo.setter
+    def titulo(self, valor):
+        self.__titulo = valor
+
+    @property
+    def anio_egreso(self):
+        return self.__anio_egreso
+
+    @anio_egreso.setter
+    def anio_egreso(self, valor):
+        self.__anio_egreso = valor
+
+    @property
+    def mis_cursos(self):
+        return self.__mis_cursos
 

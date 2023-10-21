@@ -3,31 +3,61 @@ from estudiante import *
 from profesor import *
 from cursos import *
 
-print("Bienvenido!")
-respuesta = ''
+alumno1 = Estudiante("Nicolas","Cataldi","nicolascataldi1@gmail.com","9014")
+alumno2 = Estudiante("Valen","Garrido","nosetumailperoacaestaria@quiensabe.algo","tucontraseñarealaqui")
+alumnos = [alumno1,alumno2]
 
 def menu():
-    print("1 - Ingresar como alumno")
-    print("2 - Ingresar como profesor")
-    print("3 - Ver curso")
-    print("4 - Salir")
+    respuesta = ""
+    print("Bienvenido!")
+    while respuesta != "4":
+        print("1 - Ingresar como alumno")
+        print("2 - Ingresar como profesor")
+        print("3 - Ver curso")
+        print("4 - Salir")
+        respuesta = input("\nIngrese una opcion del menu: ")
+        if respuesta == "1":
+            menu_usuario()
+            # Opción para ingresar como alumno
 
-while respuesta != "salir":
-    menu()
-    opt = input("\n Ingrese una opción de menú: ")
-    if opt.isnumeric():
-        if int(opt) == 1:
-            
-           
-        elif int(opt) == 2:
-           
-           
-        elif int(opt) == 3:
-         
-        elif int(opt) == 4:
-            respuesta = "salir"
-        else: print("Ingrese una opción válida")
-    else: 
-        print("Ingrese una opción numérica")
+        elif respuesta == "2":
+            ""
+            # Opción para ingresar como profesor
 
-print("Hasta luego!.")
+        elif respuesta == "3":
+            ""
+            # Opción para ver curso
+
+        elif respuesta == "4":
+            # Opción para salir
+            print("Hasta Luego!")
+            break
+
+        else:
+            print("Opcion no valida.")
+def menu_usuario():
+    resultado_login = False
+
+    print("Ingrese sus credenciales")
+    credencial_email = input("Email: ")
+    credencial_contrasenia = input("Contraseña: ")
+
+    for i in alumnos:
+        if credencial_email == i.email and credencial_contrasenia == i.contrasenia:
+            resultado_login = True
+            break
+
+    if resultado_login == True:
+        opcion_alumno = ""
+        while opcion_alumno != "3":
+            print("1 - Matricularse a un curso")
+            print("2 - Ver curso")
+            print("3 - Volver al menu principal")
+            opcion_alumno = input("\nIngrese una opcion del menu: ")
+
+    else:
+        print("Error, debe darse de alta en el alumnado")
+
+menu()
+
+
