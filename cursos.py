@@ -10,7 +10,7 @@ class Cursos:
 
     @classmethod
     def __generar_contrasenia(cls):
-        password_length = 6
+        password_length = 4
         return secrets.token_urlsafe(password_length)
 
     def __str__(self):

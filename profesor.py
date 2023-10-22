@@ -10,6 +10,44 @@ class Profesor(Usuario):
     def __str__(self):
         return super().__str__() + " Titulo: " + self.__titulo + " Año de egreso: " + self.__anio_egreso
 
+
+    @property
+    def nombre(self):
+        return self._nombre
+    
+    @nombre.setter
+    def nombre(self,valor):
+        self.nombre = valor
+
+    @property
+    def apellido(self):
+        return self._apellido
+    
+    @apellido.setter
+    def apellido(self,valor):
+        self.apellido = valor
+
+
+    @property
+    def email(self):
+        return self._email
+    
+    @email.setter
+    def email(self,valor):
+        self.email = valor
+
+
+    @property
+    def contrasenia(self):
+        return self._contrasenia
+    
+    
+    @contrasenia.setter
+    def contrasenia(self,valor):
+        self._contrasenia = valor
+    
+    
+    
     @property
     def titulo(self):
         return self.__titulo
