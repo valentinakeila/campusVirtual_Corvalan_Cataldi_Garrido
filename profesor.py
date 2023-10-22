@@ -8,7 +8,7 @@ class Profesor(Usuario):
         self.__mis_cursos = []
 
     def __str__(self):
-        return super().__str__() + " Titulo: ", self.__titulo, " Año de egreso: ",self.__anio_egreso
+        return super().__str__() + " Titulo: " + self.__titulo + " Año de egreso: " + self.__anio_egreso
 
     @property
     def titulo(self):

@@ -13,7 +13,7 @@ class Estudiante(Usuario):
 
     def __str__(self):
         return (super().__str__() + " Legajo: " + self.__legajo, " Año de inscripcion: " +
-                self.__anio_inscripcion_carrera)
+                self.__anio_inscripcion_carrera)  # Esto funciona ignorar el warning jeje
 
     # El diagrama UML pide de parametro crear un curso pero el enunciado pide mostrar una lista de los cursos
     # ya existentes y seleccionar el deseado a agregar al atributo mis_cursos
@@ -33,7 +33,7 @@ class Estudiante(Usuario):
     @property
     def nombre(self):
         return self._nombre
-    
+
     @nombre.setter
     def nombre(self, valor):
         self._nombre = valor
@@ -61,6 +61,7 @@ class Estudiante(Usuario):
     @contrasenia.setter
     def contrasenia(self, valor):
         self._contrasenia = valor
+
     @property
     def legajo(self):
         return self.__legajo
@@ -81,9 +82,12 @@ class Estudiante(Usuario):
     def mis_cursos(self):
         return self.__mis_cursos
 
+    @mis_cursos.setter
+    def mis_cursos(self,valor):
+        self.__mis_cursos = valor
+
         # decorador classmethod, parametro cls, cuando el profe haga dictar curso esto agregara cursos a su lista
         # mis_cursos,
 
 
 alumno1 = Estudiante("Nicolas", "Cataldi", "n@c.com", "9014")
-
