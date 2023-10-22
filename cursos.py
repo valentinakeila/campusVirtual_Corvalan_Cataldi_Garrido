@@ -20,6 +20,10 @@ class Cursos:
     def alta(self):
         return self.__alta
 
+    @alta.setter
+    def alta(self,valor):
+        self.__alta = valor
+
     @property
     def nombre(self):
         return self.__nombre

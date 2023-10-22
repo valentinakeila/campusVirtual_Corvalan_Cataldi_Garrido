@@ -85,4 +85,4 @@ class Estudiante(Usuario):
         # mis_cursos,
 
 
-alumno1 = Estudiante("Nicolas", "Cataldi", "n@c.com", "9014")
+
