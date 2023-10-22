@@ -17,11 +17,14 @@ print(curso4.contrasenia)
 print(curso5.contrasenia)
 print(curso6.contrasenia)
 
-alumno1 = Estudiante("Nicolas", "Cataldi", "nicolascataldi1@gmail.com", "12354")
-alumno2 = Estudiante("Valen", "Garrido", "nosetumailperoacaestaria@quiensabe.algo", "tucontraseñarealaqui")
-alumno2 = Estudiante("Armando", "Codigo", "n", "n")
 
-alumnos = [alumno1, alumno2]
+
+
+alumno1 = Estudiante("Nicolas", "Cataldi", "nicolascataldi1@gmail.com", "12354", 2003)
+alumno2 = Estudiante("Valen", "Garrido", "nosetumailperoacaestaria@quiensabe.algo", "tucontraseñarealaqui", 2009)
+alumno3 = Estudiante("Armando", "Codigo", "n", "n", 2023)
+
+alumnos = [alumno1, alumno2, alumno3]
 
 
 def menu():
@@ -34,7 +37,7 @@ def menu():
         print("4 - Salir")
         respuesta = input("\nIngrese una opcion del menu: ")
         if respuesta == "1":
-            menu_usuario()
+            menu_estudiante()
             # Opción para ingresar como alumno
 
         elif respuesta == "2":
@@ -54,7 +57,7 @@ def menu():
             print("Opcion no valida.")
 
 
-def menu_usuario():
+def menu_estudiante():
     resultado_login = False
     alumno_indice = 0
 
@@ -65,6 +68,7 @@ def menu_usuario():
     for i in alumnos:
         alumno_indice = alumno_indice + 1
         if credencial_email == i.email and credencial_contrasenia == i.contrasenia:
+            i.nombre
             resultado_login = True
             break
 
@@ -73,6 +77,9 @@ def menu_usuario():
         opcion_alumno = ""
         contrasenia_curso = ""
         bandera_tiene_cursos = False
+        contador_cursos = 0
+        bandera_hay_cursos = False
+
         while opcion_alumno != "3":
             bandera_curso_encontrado = False
             print("1 - Matricularse a un curso")
@@ -81,19 +88,26 @@ def menu_usuario():
             opcion_alumno = input("\nIngrese una opcion del menu: ")
             if opcion_alumno == "1":
                 opcion_curso = input(
-                    "1 Programación I\n2 Programación II\n3 Laboratorio I\n4 Laboratorio II\n5 Ingles I\n6 Ingles II\n")
+                "1 Programación I\n2 Programación II\n3 Laboratorio I\n4 Laboratorio II\n5 Ingles I\n6 Ingles II\n")
+                        
+
+                if bandera_hay_cursos == False:
+                    print("No hay cursos disponibles")
+
                 if opcion_curso == "1":
-                    for i in alumnos[alumno_indice].mis_cursos:
-                        if i == "Programacion I":
-                            bandera_curso_encontrado = True
-                            print("Ya esta matriculado a este curso")
-                    if bandera_curso_encontrado == False:
-                        contrasenia_curso = input("Ingrese la contraseña del curso\n")
-                        if contrasenia_curso == curso1.contrasenia:
-                            print("Matriculado con exito")
-                            alumnos[alumno_indice].mis_cursos.append("Programacion I")
-                        else:
-                            print("Contraseña incorrecta")
+                    if curso1.alta == True:
+                        for i in alumnos[alumno_indice].mis_cursos:
+                            if i == "Programacion I":
+                                bandera_curso_encontrado = True
+                                print("Ya esta matriculado a este curso")
+                        if bandera_curso_encontrado == False:
+                            contrasenia_curso = input("Ingrese la contraseña del curso\n")
+                            if contrasenia_curso == curso1.contrasenia:
+                                print("Matriculado con exito")
+                                alumnos[alumno_indice].mis_cursos.append("Programacion I")
+                            else:
+                                print("Contraseña incorrecta")
+                    else:print("El curso no esta disponible")
 
                 elif opcion_curso == "2":
                     for i in alumnos[alumno_indice].mis_cursos:

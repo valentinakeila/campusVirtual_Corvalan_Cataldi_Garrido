@@ -1,14 +1,13 @@
 import random
 from usuario import Usuario
 from cursos import Cursos
-from datetime import datetime
 
 
 class Estudiante(Usuario):
-    def __init__(self, nombre: str, apellido: str, email: str, contrasenia: str):
+    def __init__(self, nombre: str, apellido: str, email: str, contrasenia: str, anio_inscripcion: int):
         super().__init__(nombre, apellido, email, contrasenia)
         self.__legajo = self.__generar_legajo()
-        self.__anio_inscripcion_carrera = self.__generar_anio_inscripcion()
+        self.__anio_inscripcion_carrera = anio_inscripcion
         self.__mis_cursos = []
 
     def __str__(self):
@@ -25,10 +24,6 @@ class Estudiante(Usuario):
     @classmethod
     def __generar_legajo(cls):
         return random.randint(100000, 999999)
-
-    @classmethod
-    def __generar_anio_inscripcion(cls):
-        return datetime.now().year
 
     @property
     def nombre(self):

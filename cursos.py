@@ -6,6 +6,7 @@ class Cursos:
     def __init__(self, nombre: str):
         self.__nombre = nombre
         self.__contrasenia_matriculacion = self.__generar_contrasenia()
+        self.__alta = False #Empieza dado de baja y un profesor puede darlo de alta para dictarlo
 
     @classmethod
     def __generar_contrasenia(cls):
@@ -14,6 +15,10 @@ class Cursos:
 
     def __str__(self):
         return f"{self.__nombre}: '{self.__contrasenia_matriculacion}'"
+
+    @property
+    def alta(self):
+        return self.__alta
 
     @property
     def nombre(self):
