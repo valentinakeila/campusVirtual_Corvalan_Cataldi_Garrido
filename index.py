@@ -10,6 +10,9 @@ curso4 = Cursos("Laboratorio II")
 curso5 = Cursos("Ingles I")
 curso6 = Cursos("Ingles II")
 
+curso1.contrasenia = "1"
+
+
 print(curso1.contrasenia)
 print(curso2.contrasenia)
 print(curso3.contrasenia)
@@ -19,6 +22,7 @@ print(curso6.contrasenia)
 
 curso1.alta = True
 curso6.alta = True
+
 
 cursos = [curso1,curso2,curso3,curso4,curso5,curso6]
 
@@ -124,8 +128,10 @@ def menu_estudiante():
 
                 opcion_mostrar_curso = input("Seleccione una opcion\n")
                 opcion_mostrar_curso = int(opcion_mostrar_curso)
-                
-                print("Nombre: ", alumnos[alumno_indice].mis_cursos[opcion_mostrar_curso - 1])
+                if opcion_mostrar_curso > len(alumnos[alumno_indice].mis_cursos):
+                    print("Opcion no valida")
+                else:
+                    print("Nombre: ", alumnos[alumno_indice].mis_cursos[opcion_mostrar_curso - 1])
 
                 if bandera_tiene_cursos == False:
                     print("No esta matriculado a ningun curso")
