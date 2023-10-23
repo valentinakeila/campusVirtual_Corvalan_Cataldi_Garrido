@@ -3,6 +3,11 @@ from estudiante import *
 from profesor import *
 from cursos import *
 
+# Se crean los cursos dados de baja por defecto
+# Valentina Garrido
+# Nicolas Cataldi
+# Geraldine Corvalan
+
 curso1 = Cursos("Programacion I")
 curso2 = Cursos("Programacion II")
 curso3 = Cursos("Laboratorio I")
@@ -10,21 +15,26 @@ curso4 = Cursos("Laboratorio II")
 curso5 = Cursos("Ingles I")
 curso6 = Cursos("Ingles II")
 
-
+# Se meten en una lista
 
 cursos = [curso1,curso2,curso3,curso4,curso5,curso6]
 
-alumno1 = Estudiante("Nicolas", "Cataldi", "nicolascataldi1@gmail.com", "12354", 2003)
-alumno2 = Estudiante("Valentina", "Garrido", "valentinake@gmail.com", "tucontraseñarealaqui", 2009)
-alumno3 = Estudiante("Armando", "Codigo", "n", "n", 2023)
+# Se definen los estudiantes sin estar matriculados
+
+alumno1 = Estudiante("Nicolas", "Cataldi", "nicolascataldi1@gmail.com", "ninini", 2003)
+alumno2 = Estudiante("Valentina", "Garrido", "valentinakeila12@gmail.com", "valenlamejor", 2009)
+alumno3 = Estudiante("Geraldine", "Mendiola", "geri@gmail.com", "gerilamejor", 2023)
 
 alumnos = [alumno1, alumno2, alumno3]
 
-profesor1 = Profesor("Mechi","Valoni","n","n","Analista en Sistemas",2020)
-profesor2 = Profesor("Miguel","Angel","n1","n1","Analista en Sistemas",2023)
+# Se definen los profesores
+
+profesor1 = Profesor("Mechi","Valoni","lamechi@gmail.com","mechilamejor","Analista en Sistemas",2020)
+profesor2 = Profesor("Miguel","Cabrera","miguelcabrera@gmail.com","miguelelmejor","Analista en Sistemas",2023)
 
 profesores = [profesor1,profesor2]
 
+# Se define la funcion del menu y al final del codigo se llaman
 
 def menu():
     respuesta = ""
@@ -58,18 +68,18 @@ def menu():
 
 def menu_estudiante():
     resultado_login = False
-    alumno_indice = 0
+    alumno_indice = 0 # Se guarda en un indice el alumno encontrado en la lista
 
     print("Ingrese sus credenciales")
     credencial_email = input("Email: ")
     credencial_contrasenia = input("Contraseña: ")
 
     for i in alumnos:
-        alumno_indice = alumno_indice + 1 #Esto es necesario aunque no lo parezca
+        alumno_indice = alumno_indice + 1 # Esto es necesario aunque no lo parezca
         if credencial_email == i.email and credencial_contrasenia == i.contrasenia:
             i.nombre
-            resultado_login = True
-            break
+            resultado_login = True # Se encontro el usuario
+            break # Se sale del for una vez encontrado el usuario
 
     if resultado_login == True:
         alumno_indice = alumno_indice - 1 #Esto tambien
@@ -93,20 +103,20 @@ def menu_estudiante():
 
                 for i in cursos:
                     if i.alta == True:
-                        bandera_hay_cursos = True
+                        bandera_hay_cursos = True # Si se encuentra al menos un curso es True
 
-                if bandera_hay_cursos == False:
+                if bandera_hay_cursos == False: # Si no hay cursos muestra un error
                     print("No hay cursos disponibles")
 
                 if opcion_curso < 6 and opcion_curso > -1:
                     if cursos[opcion_curso].alta == True:
                         for i in range(0,len(alumnos[alumno_indice].mis_cursos)):
-                            if cursos[opcion_curso] == alumnos[alumno_indice].mis_cursos[i]:
+                            if cursos[opcion_curso].nombre == alumnos[alumno_indice].mis_cursos[i]: # Busca en su lista de cursos si ya esta matriculado
                                 bandera_curso_encontrado = True
                                 print("Ya esta matriculado a este curso")
                         if bandera_curso_encontrado == False:
                             contrasenia_curso = input("Ingrese la contraseña del curso\n")
-                            if contrasenia_curso == cursos[opcion_curso].contrasenia:
+                            if contrasenia_curso == cursos[opcion_curso].contrasenia: # Compara la contraseña
                                 print("Matriculado con exito")
                                 alumnos[alumno_indice].mis_cursos.append(cursos[opcion_curso].nombre)
                             else:
@@ -172,6 +182,9 @@ def menu_profesor():
             i.nombre
             resultado_login = True
             break
+        else:
+            print("Error de ingreso")
+            break
 
     if resultado_login == True:
         profesor_indice = profesor_indice - 1
@@ -206,17 +219,17 @@ def menu_profesor():
                     if bandera_curso_encontrado == False:
                         print("Ahora eres el profesor de este curso")
                         cursos[opcion_curso].alta = True
-                        profesores[profesor_indice].mis_cursos.append(cursos[opcion_curso].nombre)
-                        print(f"Curso a dictar: {cursos[opcion_curso].nombre}\nContraseña: {cursos[opcion_curso].contrasenia}\n")
+                        profesores[profesor_indice].mis_cursos.append(cursos[opcion_curso]) # Se agrega a mis cursos el curso
+                        print(f"Curso a dictar: {cursos[opcion_curso].nombre}\nContraseña: {cursos[opcion_curso].contrasenia}\n") # Confirma el dictado con el nombre y la contraseña
                 else:
                     print("El curso no esta disponible\n")
                     
             elif opcion_profesor == "2":
                 numero_curso = 0
-                for i in profesores[profesor_indice].mis_cursos:
+                for i in profesores[profesor_indice].mis_cursos: # Si esta vacio no itera ni una vez
                     numero_curso = numero_curso + 1
                     bandera_tiene_cursos = True
-                    print(numero_curso, "\t", i)
+                    print(numero_curso, "\t", i.nombre)
 
               
                 if bandera_tiene_cursos == True:
@@ -225,7 +238,7 @@ def menu_profesor():
                     if opcion_mostrar_curso > len(profesores[profesor_indice].mis_cursos) or opcion_mostrar_curso < 1:
                         print("Opcion no valida")
                     else:
-                        print("Nombre: ", profesores[profesor_indice].mis_cursos[opcion_mostrar_curso - 1])
+                        print("Nombre: ", profesores[profesor_indice].mis_cursos[opcion_mostrar_curso - 1].nombre + "\Contraseña: " + profesores[profesor_indice].mis_cursos[opcion_mostrar_curso - 1].contrasenia) # Informa el nombre del curso y su contraseña
                 else:
                     print("No esta dictando ningun curso")
                 print("\n")
